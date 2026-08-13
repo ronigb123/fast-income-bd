@@ -1,1 +1,241 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fast Income BD</title>
 
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f2f8f4;
+      color: #173b2a;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #008f4c, #006b38);
+      color: white;
+      padding: 25px 18px;
+      border-radius: 0 0 25px 25px;
+      text-align: center;
+    }
+
+    .logo {
+      width: 70px;
+      height: 70px;
+      background: #ffd43b;
+      color: #006b38;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .header h1 {
+      margin-top: 12px;
+      font-size: 25px;
+    }
+
+    .header p {
+      margin-top: 6px;
+      opacity: .9;
+    }
+
+    .balance {
+      margin: 18px;
+      padding: 22px;
+      background: white;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,.08);
+    }
+
+    .balance-title {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .coins {
+      font-size: 34px;
+      font-weight: bold;
+      color: #008f4c;
+      margin: 8px 0;
+    }
+
+    .card {
+      background: white;
+      margin: 15px 18px;
+      padding: 20px;
+      border-radius: 18px;
+      box-shadow: 0 4px 15px rgba(0,0,0,.07);
+    }
+
+    .card h2 {
+      font-size: 19px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 14px;
+      cursor: pointer;
+    }
+
+    .activate {
+      background: #ffd43b;
+      color: #173b2a;
+    }
+
+    .watch {
+      background: #008f4c;
+      color: white;
+    }
+
+    .withdraw {
+      background: #173b2a;
+      color: white;
+    }
+
+    .menu {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 18px;
+    }
+
+    .menu div {
+      background: white;
+      padding: 18px 10px;
+      text-align: center;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,.06);
+      font-weight: bold;
+    }
+
+    .footer {
+      text-align: center;
+      color: #777;
+      padding: 20px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="logo">৳</div>
+    <h1>Fast Income BD</h1>
+    <p>Telegram Mini App</p>
+  </div>
+
+  <div class="balance">
+    <div class="balance-title">আপনার কয়েন ব্যালেন্স</div>
+    <div class="coins" id="coinBalance">0 Coins</div>
+    <p>100 Coins = 1 টাকা</p>
+  </div>
+
+  <div class="card">
+    <h2>🔐 অ্যাকাউন্ট অ্যাক্টিভেশন</h2>
+    <p>
+      বিজ্ঞাপন দেখার সুবিধা চালু করতে অ্যাকাউন্ট অ্যাক্টিভেট করুন।
+    </p>
+
+    <button class="activate" onclick="activateAccount()">
+      ৮০ টাকা দিয়ে অ্যাক্টিভেট করুন
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>📺 বিজ্ঞাপন দেখুন</h2>
+    <p>
+      বিজ্ঞাপন দেখার পর আপনার অ্যাকাউন্টে কয়েন যোগ হবে।
+    </p>
+
+    <button class="watch" onclick="watchAd()">
+      ▶ বিজ্ঞাপন দেখুন
+    </button>
+  </div>
+
+  <div class="card">
+    <h2>💰 টাকা উত্তোলন</h2>
+    <p>
+      পর্যাপ্ত কয়েন জমা হলে আপনার নির্ধারিত পদ্ধতিতে উত্তোলনের অনুরোধ করতে পারবেন।
+    </p>
+
+    <button class="withdraw" onclick="withdraw()">
+      টাকা উত্তোলন
+    </button>
+  </div>
+
+  <div class="menu">
+    <div>👤 প্রোফাইল</div>
+    <div>📋 হিস্টোরি</div>
+    <div>🎁 বোনাস</div>
+    <div>📞 সাপোর্ট</div>
+  </div>
+
+  <div class="footer">
+    © 2026 Fast Income BD
+  </div>
+
+  <script>
+    let coins = 0;
+    let activated = false;
+
+    function activateAccount() {
+      alert("অ্যাকাউন্ট অ্যাক্টিভেশন সিস্টেম পরবর্তী ধাপে যুক্ত করা হবে।");
+    }
+
+    function watchAd() {
+      if (!activated) {
+        alert("প্রথমে আপনার অ্যাকাউন্ট অ্যাক্টিভেট করুন।");
+        return;
+      }
+
+      coins += 10;
+      document.getElementById("coinBalance").innerText =
+        coins + " Coins";
+
+      alert("অভিনন্দন! ১০ Coins যোগ হয়েছে।");
+    }
+
+    function withdraw() {
+      if (coins < 1000) {
+        alert("উত্তোলনের জন্য কমপক্ষে 1000 Coins প্রয়োজন।");
+        return;
+      }
+
+      alert("উত্তোলন সিস্টেম পরবর্তী ধাপে যুক্ত করা হবে।");
+    }
+
+    if (window.Telegram && Telegram.WebApp) {
+      Telegram.WebApp.ready();
+      Telegram.WebApp.expand();
+    }
+  </script>
+
+</body>
+</html>
