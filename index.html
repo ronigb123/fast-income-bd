@@ -1,4 +1,3 @@
-o
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -7,233 +6,549 @@ o
 <title>Fast Income BD</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
-
+*{box-sizing:border-box}
 body{
-  background:#f2f8f4;
-  color:#173b2a;
+margin:0;
+font-family:Arial,sans-serif;
+background:#f2f8f4;
+color:#173b2a;
+padding-bottom:80px
 }
-
 .header{
-  background:#008c4c;
-  color:white;
-  text-align:center;
-  padding:35px 20px;
-  border-radius:0 0 40px 40px;
+background:#008c4c;
+color:white;
+text-align:center;
+padding:30px 15px;
+border-radius:0 0 35px 35px
 }
-
 .logo{
-  width:85px;
-  height:85px;
-  background:#ffd83d;
-  color:#008c4c;
-  border-radius:50%;
-  margin:auto;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:42px;
-  font-weight:bold;
+width:75px;height:75px;
+margin:auto;
+border-radius:50%;
+background:#ffd43b;
+color:#008c4c;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:38px;
+font-weight:bold
 }
-
-.header h1{
-  margin-top:20px;
-  font-size:32px;
-}
-
-.header p{
-  margin-top:10px;
-  font-size:22px;
-}
-
+.header h1{margin:12px 0 5px}
 .card{
-  background:white;
-  margin:28px 20px;
-  padding:28px;
-  border-radius:28px;
-  box-shadow:0 5px 20px rgba(0,0,0,.08);
+background:white;
+margin:16px;
+padding:20px;
+border-radius:22px;
+box-shadow:0 3px 12px #00000012
 }
-
-.balance{
-  text-align:center;
-}
-
-.balance-title{
-  font-size:20px;
-  color:#777;
-}
-
+.center{text-align:center}
 .points{
-  font-size:48px;
-  font-weight:bold;
-  color:#008c4c;
-  margin:15px 0;
+font-size:40px;
+font-weight:bold;
+color:#008c4c;
+margin:10px
 }
-
-.rate{
-  font-size:22px;
-}
-
-h2{
-  margin-bottom:18px;
-}
-
-.info{
-  color:#777;
-  font-size:18px;
-  line-height:1.6;
-}
-
 button{
-  width:100%;
-  border:0;
-  border-radius:18px;
-  padding:18px;
-  margin-top:20px;
-  font-size:20px;
-  font-weight:bold;
-  cursor:pointer;
+width:100%;
+padding:15px;
+margin-top:12px;
+border:0;
+border-radius:14px;
+font-size:17px;
+font-weight:bold
 }
-
-.activate{
-  background:#ffd43b;
-  color:#173b2a;
+.green{background:#008c4c;color:white}
+.yellow{background:#ffd43b;color:#173b2a}
+.gray{background:#999;color:white}
+.input,textarea{
+width:100%;
+padding:14px;
+margin-top:10px;
+border:1px solid #ddd;
+border-radius:12px;
+font-size:16px
 }
-
-.watch{
-  background:#009b50;
-  color:white;
+.section{display:none}
+.active{display:block}
+.menu{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
 }
-
-.withdraw{
-  background:#008c4c;
-  color:white;
+.menu button{
+background:#edf8f1;
+color:#008c4c;
+margin:0
 }
-
-button:disabled{
-  background:#aaa;
+.history{
+padding:12px 0;
+border-bottom:1px solid #eee
 }
-
-#status{
-  text-align:center;
-  margin-top:15px;
-  color:#008c4c;
-  font-weight:bold;
+.bottom{
+position:fixed;
+bottom:0;
+left:0;
+right:0;
+background:white;
+display:flex;
+box-shadow:0 -3px 12px #0002;
+z-index:10
 }
+.bottom button{
+background:white;
+color:#008c4c;
+font-size:12px;
+margin:0;
+padding:9px 3px
+}
+.badge{
+display:inline-block;
+padding:6px 12px;
+border-radius:20px;
+background:#e5f7ec;
+color:#008c4c
+}
+.info{color:#666;line-height:1.6}
 </style>
 </head>
 
 <body>
 
 <div class="header">
-  <div class="logo">৳</div>
-  <h1>Fast Income BD</h1>
-  <p>Telegram Mini App</p>
+<div class="logo">৳</div>
+<h1>Fast Income BD</h1>
+<p>Telegram Mini App</p>
 </div>
 
-<div class="card balance">
-  <div class="balance-title">আপনার বর্তমান ব্যালেন্স</div>
+<!-- HOME -->
+<div id="home" class="section active">
 
-  <div class="points">
-    <span id="points">0</span> Points
-  </div>
-
-  <div class="rate">
-    <b>1000 Points = 100 টাকা</b>
-  </div>
+<div class="card center">
+<p>আপনার কয়েন ব্যালেন্স</p>
+<div class="points" id="points">0</div>
+<p>1000 Points = 100 টাকা</p>
 </div>
 
 <div class="card">
-  <h2>🔐 অ্যাকাউন্ট অ্যাক্টিভেশন</h2>
-
-  <p class="info">
-    বিজ্ঞাপন দেখার সুবিধা চালু করতে আপনার অ্যাকাউন্ট অ্যাক্টিভেট করুন।
-  </p>
-
-  <button class="activate" onclick="activateAccount()">
-    ৮০ টাকা দিয়ে অ্যাক্টিভেট করুন
-  </button>
+<h2>🔐 অ্যাকাউন্ট অ্যাক্টিভেশন</h2>
+<p class="info">
+বিজ্ঞাপন দেখার সুবিধা চালু করতে অ্যাকাউন্ট অ্যাক্টিভেট করুন।
+</p>
+<p>বর্তমান অবস্থা:
+<span id="status" class="badge">Inactive</span>
+</p>
+<button class="yellow" onclick="show('activation')">
+৮০ টাকা দিয়ে অ্যাক্টিভেট করুন
+</button>
 </div>
 
 <div class="card">
-  <h2>📺 বিজ্ঞাপন দেখুন</h2>
-
-  <p class="info">
-    বিজ্ঞাপন দেখার পর আপনার অ্যাকাউন্টে Points যোগ হবে।
-  </p>
-
-  <button class="watch" onclick="watchAd()">
-    ▶ বিজ্ঞাপন দেখুন
-  </button>
-
-  <div id="status"></div>
+<h2>📺 বিজ্ঞাপন দেখুন</h2>
+<p class="info">
+সম্পূর্ণ ভিডিও দেখলে ১০ Points পাওয়ার ব্যবস্থা থাকবে।
+</p>
+<button class="green" onclick="watchAd()">▶ বিজ্ঞাপন দেখুন</button>
+<p id="admsg"></p>
 </div>
 
 <div class="card">
-  <h2>💰 টাকা উত্তোলন</h2>
+<h2>🎁 Daily Check-in</h2>
+<p class="info">প্রতিদিন একবার Check-in Bonus পাবেন।</p>
+<button class="yellow" onclick="checkin()">আজকের Check-in</button>
+<p id="checkmsg"></p>
+</div>
 
-  <p class="info">
-    আপনার ব্যালেন্স ১০০০ Points হলে ১০০ টাকা উত্তোলনের জন্য আবেদন করতে পারবেন।
-  </p>
+</div>
 
-  <button class="withdraw" onclick="withdrawMoney()">
-    টাকা উত্তোলন
-  </button>
+<!-- ACTIVATION -->
+<div id="activation" class="section">
+
+<div class="card">
+<h2>🔐 Account Activation</h2>
+
+<p class="info">
+অ্যাকাউন্ট অ্যাক্টিভেট করতে ৮০ টাকা Send Money করুন।
+</p>
+
+<div class="card">
+<b>বিকাশ</b>
+<p>01935654366</p>
+</div>
+
+<div class="card">
+<b>নগদ</b>
+<p>01873570387</p>
+</div>
+
+<p class="info">
+⚠️ শুধুমাত্র Send Money গ্রহণযোগ্য।<br>
+❌ Mobile Recharge গ্রহণযোগ্য নয়।<br>
+🔒 Rocket বর্তমানে Hold করা আছে।
+</p>
+
+<input id="txid" class="input" placeholder="Transaction ID লিখুন">
+
+<button class="yellow" onclick="activationRequest()">
+Activation Request
+</button>
+
+<p id="actmsg"></p>
+</div>
+
+</div>
+
+<!-- PROFILE -->
+<div id="profile" class="section">
+
+<div class="card">
+<h2>👤 User Profile</h2>
+
+<input id="name" class="input" placeholder="আপনার নাম">
+
+<input id="username" class="input" placeholder="Telegram Username">
+
+<button class="green" onclick="saveProfile()">
+Profile Save
+</button>
+
+<p id="profilemsg"></p>
+</div>
+
+<div class="card">
+<h2>📜 History</h2>
+<div id="history"></div>
+</div>
+
+</div>
+
+<!-- REFERRAL -->
+<div id="referral" class="section">
+
+<div class="card">
+<h2>🔗 Referral System</h2>
+
+<p class="info">
+প্রতি সফল Referral-এর জন্য ২০ টাকা Bonus পাওয়ার ব্যবস্থা থাকবে।
+</p>
+
+<input id="referralLink" class="input" readonly>
+
+<button class="green" onclick="copyReferral()">
+Referral Link Copy
+</button>
+
+</div>
+
+</div>
+
+<!-- WITHDRAW -->
+<div id="withdraw" class="section">
+
+<div class="card">
+<h2>💰 টাকা উত্তোলন</h2>
+
+<p>বর্তমান Points:
+<b id="wpoints">0</b>
+</p>
+
+<p class="info">
+সর্বনিম্ন ১০০০ Points এবং সর্বোচ্চ ৫০০০ Points উত্তোলন করা যাবে।
+</p>
+
+<input id="amount" class="input"
+type="number"
+placeholder="Points লিখুন">
+
+<select id="method" class="input">
+<option value="bkash">বিকাশ</option>
+<option value="nagad">নগদ</option>
+<option value="rocket">Rocket — Hold</option>
+</select>
+
+<input id="number" class="input"
+placeholder="আপনার পেমেন্ট নম্বর">
+
+<button class="green" onclick="withdraw()">
+উত্তোলনের আবেদন
+</button>
+
+<p id="wmsg"></p>
+</div>
+
+</div>
+
+<!-- SUPPORT -->
+<div id="support" class="section">
+
+<div class="card">
+<h2>🆘 Support</h2>
+
+<textarea id="supportText"
+rows="5"
+placeholder="আপনার সমস্যাটি লিখুন"></textarea>
+
+<button class="green" onclick="support()">
+Support পাঠান
+</button>
+
+<p id="supportmsg"></p>
+</div>
+
+</div>
+
+<!-- BOTTOM -->
+<div class="bottom">
+
+<button onclick="show('home')">
+🏠<br>Home
+</button>
+
+<button onclick="show('profile')">
+👤<br>Profile
+</button>
+
+<button onclick="show('referral')">
+🔗<br>Referral
+</button>
+
+<button onclick="show('withdraw')">
+💰<br>Withdraw
+</button>
+
+<button onclick="show('support')">
+🆘<br>Support
+</button>
+
 </div>
 
 <script>
-let points = Number(localStorage.getItem("points")) || 0;
-let activated = localStorage.getItem("activated") === "true";
 
-document.getElementById("points").innerText = points;
+let points=Number(localStorage.getItem("points")||0);
+let active=localStorage.getItem("active")==="true";
+let history=JSON.parse(localStorage.getItem("history")||"[]");
 
-function activateAccount(){
-  if(activated){
-    alert("আপনার অ্যাকাউন্ট ইতিমধ্যে অ্যাক্টিভেট করা হয়েছে।");
-    return;
-  }
+function show(id){
 
-  alert("পেমেন্ট সিস্টেম পরবর্তীতে যুক্ত করা হবে।");
+document.querySelectorAll(".section")
+.forEach(x=>x.classList.remove("active"));
+
+document.getElementById(id).classList.add("active");
+
+window.scrollTo(0,0);
+}
+
+function update(){
+
+document.getElementById("points").innerText=points;
+document.getElementById("wpoints").innerText=points;
+
+document.getElementById("status").innerText=
+active?"Active":"Inactive";
+
+document.getElementById("status").style.color=
+active?"#008c4c":"#777";
+
+renderHistory();
+
+}
+
+function savePoints(){
+localStorage.setItem("points",points);
+update();
+}
+
+function addHistory(text){
+
+history.unshift({
+text:text,
+date:new Date().toLocaleString("bn-BD")
+});
+
+localStorage.setItem("history",JSON.stringify(history));
+
+renderHistory();
+}
+
+function renderHistory(){
+
+let box=document.getElementById("history");
+
+if(history.length===0){
+box.innerHTML="<p class='info'>কোনো History নেই।</p>";
+return;
+}
+
+box.innerHTML=history.map(x=>
+"<div class='history'>"+
+"<b>"+x.text+"</b><br>"+
+"<small>"+x.date+"</small>"+
+"</div>"
+).join("");
+
+}
+
+function activationRequest(){
+
+let tx=document.getElementById("txid").value.trim();
+
+if(!tx){
+alert("Transaction ID লিখুন।");
+return;
+}
+
+document.getElementById("actmsg").innerText=
+"Activation Request জমা হয়েছে। Admin verification প্রয়োজন।";
+
+addHistory("Account Activation Request");
+
 }
 
 function watchAd(){
-  if(!activated){
-    alert("প্রথমে ৮০ টাকা দিয়ে অ্যাকাউন্ট অ্যাক্টিভেট করুন।");
-    return;
-  }
 
-  // পরীক্ষামূলকভাবে ১০ Points যোগ হবে
-  points += 10;
-
-  localStorage.setItem("points", points);
-  document.getElementById("points").innerText = points;
-
-  document.getElementById("status").innerText =
-    "অভিনন্দন! ১০ Points যোগ হয়েছে।";
+if(!active){
+alert("আগে Account Activate করুন।");
+return;
 }
 
-function withdrawMoney(){
-  if(points < 1000){
-    alert(
-      "উত্তোলনের জন্য কমপক্ষে ১০০০ Points প্রয়োজন।\nবর্তমান Points: " +
-      points
-    );
-    return;
-  }
+/*
+বাস্তব বিজ্ঞাপন যুক্ত করার পরে
+reward শুধুমাত্র বিজ্ঞাপন সম্পূর্ণ হলে
+নিরাপদ backend verification-এর মাধ্যমে দেওয়া উচিত।
+*/
 
-  let taka = Math.floor(points / 10);
+points+=10;
 
-  alert(
-    "আপনার উত্তোলনযোগ্য টাকা: " +
-    taka +
-    " টাকা\n\nউত্তোলন সিস্টেম পরবর্তীতে যুক্ত করা হবে।"
-  );
+savePoints();
+
+document.getElementById("admsg").innerText=
+"+10 Points যোগ হয়েছে।";
+
+addHistory("+10 Points — Advertisement");
+
 }
+
+function checkin(){
+
+if(!active){
+alert("আগে Account Activate করুন।");
+return;
+}
+
+let today=new Date().toISOString().slice(0,10);
+let last=localStorage.getItem("checkin");
+
+if(last===today){
+document.getElementById("checkmsg").innerText=
+"আজকের Check-in ইতিমধ্যে নেওয়া হয়েছে।";
+return;
+}
+
+points+=10;
+
+localStorage.setItem("checkin",today);
+
+savePoints();
+
+document.getElementById("checkmsg").innerText=
+"আজকের Bonus +10 Points";
+
+addHistory("+10 Points — Daily Check-in");
+
+}
+
+function saveProfile(){
+
+localStorage.setItem(
+"name",
+document.getElementById("name").value
+);
+
+localStorage.setItem(
+"username",
+document.getElementById("username").value
+);
+
+document.getElementById("profilemsg").innerText=
+"Profile Save হয়েছে।";
+
+}
+
+function copyReferral(){
+
+navigator.clipboard.writeText(
+document.getElementById("referralLink").value
+);
+
+alert("Referral Link Copy হয়েছে।");
+
+}
+
+function withdraw(){
+
+let amount=Number(
+document.getElementById("amount").value
+);
+
+let method=document.getElementById("method").value;
+let number=document.getElementById("number").value.trim();
+
+if(amount<1000 || amount>5000){
+alert("1000 থেকে 5000 Points-এর মধ্যে দিন।");
+return;
+}
+
+if(amount>points){
+alert("আপনার পর্যাপ্ত Points নেই।");
+return;
+}
+
+if(!number){
+alert("পেমেন্ট নম্বর দিন।");
+return;
+}
+
+if(method==="rocket"){
+alert("Rocket বর্তমানে Hold করা আছে।");
+return;
+}
+
+document.getElementById("wmsg").innerText=
+"Withdrawal Request জমা হয়েছে। Admin verification প্রয়োজন।";
+
+addHistory(
+"Withdrawal Request — "+
+amount+" Points"
+);
+
+}
+
+function support(){
+
+let text=document.getElementById("supportText").value.trim();
+
+if(!text){
+alert("সমস্যাটি লিখুন।");
+return;
+}
+
+document.getElementById("supportmsg").innerText=
+"Support Request জমা হয়েছে।";
+
+addHistory("Support Request");
+
+}
+
+document.getElementById("name").value=
+localStorage.getItem("name")||"";
+
+document.getElementById("username").value=
+localStorage.getItem("username")||"";
+
+document.getElementById("referralLink").value=
+"https://t.me/FastIncomeBDBot";
+
+update();
+
 </script>
 
 </body>
