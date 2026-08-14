@@ -1,241 +1,240 @@
+o
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fast Income BD</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast Income BD</title>
 
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
+body{
+  background:#f2f8f4;
+  color:#173b2a;
+}
 
-    body {
-      background: #f2f8f4;
-      color: #173b2a;
-    }
+.header{
+  background:#008c4c;
+  color:white;
+  text-align:center;
+  padding:35px 20px;
+  border-radius:0 0 40px 40px;
+}
 
-    .header {
-      background: linear-gradient(135deg, #008f4c, #006b38);
-      color: white;
-      padding: 25px 18px;
-      border-radius: 0 0 25px 25px;
-      text-align: center;
-    }
+.logo{
+  width:85px;
+  height:85px;
+  background:#ffd83d;
+  color:#008c4c;
+  border-radius:50%;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  font-weight:bold;
+}
 
-    .logo {
-      width: 70px;
-      height: 70px;
-      background: #ffd43b;
-      color: #006b38;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: auto;
-      font-size: 30px;
-      font-weight: bold;
-    }
+.header h1{
+  margin-top:20px;
+  font-size:32px;
+}
 
-    .header h1 {
-      margin-top: 12px;
-      font-size: 25px;
-    }
+.header p{
+  margin-top:10px;
+  font-size:22px;
+}
 
-    .header p {
-      margin-top: 6px;
-      opacity: .9;
-    }
+.card{
+  background:white;
+  margin:28px 20px;
+  padding:28px;
+  border-radius:28px;
+  box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
 
-    .balance {
-      margin: 18px;
-      padding: 22px;
-      background: white;
-      border-radius: 18px;
-      text-align: center;
-      box-shadow: 0 4px 15px rgba(0,0,0,.08);
-    }
+.balance{
+  text-align:center;
+}
 
-    .balance-title {
-      color: #777;
-      font-size: 14px;
-    }
+.balance-title{
+  font-size:20px;
+  color:#777;
+}
 
-    .coins {
-      font-size: 34px;
-      font-weight: bold;
-      color: #008f4c;
-      margin: 8px 0;
-    }
+.points{
+  font-size:48px;
+  font-weight:bold;
+  color:#008c4c;
+  margin:15px 0;
+}
 
-    .card {
-      background: white;
-      margin: 15px 18px;
-      padding: 20px;
-      border-radius: 18px;
-      box-shadow: 0 4px 15px rgba(0,0,0,.07);
-    }
+.rate{
+  font-size:22px;
+}
 
-    .card h2 {
-      font-size: 19px;
-      margin-bottom: 10px;
-    }
+h2{
+  margin-bottom:18px;
+}
 
-    .card p {
-      color: #666;
-      line-height: 1.6;
-      font-size: 14px;
-    }
+.info{
+  color:#777;
+  font-size:18px;
+  line-height:1.6;
+}
 
-    button {
-      width: 100%;
-      border: none;
-      padding: 14px;
-      border-radius: 12px;
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 14px;
-      cursor: pointer;
-    }
+button{
+  width:100%;
+  border:0;
+  border-radius:18px;
+  padding:18px;
+  margin-top:20px;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+}
 
-    .activate {
-      background: #ffd43b;
-      color: #173b2a;
-    }
+.activate{
+  background:#ffd43b;
+  color:#173b2a;
+}
 
-    .watch {
-      background: #008f4c;
-      color: white;
-    }
+.watch{
+  background:#009b50;
+  color:white;
+}
 
-    .withdraw {
-      background: #173b2a;
-      color: white;
-    }
+.withdraw{
+  background:#008c4c;
+  color:white;
+}
 
-    .menu {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin: 18px;
-    }
+button:disabled{
+  background:#aaa;
+}
 
-    .menu div {
-      background: white;
-      padding: 18px 10px;
-      text-align: center;
-      border-radius: 15px;
-      box-shadow: 0 3px 10px rgba(0,0,0,.06);
-      font-weight: bold;
-    }
-
-    .footer {
-      text-align: center;
-      color: #777;
-      padding: 20px;
-      font-size: 12px;
-    }
-  </style>
+#status{
+  text-align:center;
+  margin-top:15px;
+  color:#008c4c;
+  font-weight:bold;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="header">
-    <div class="logo">৳</div>
-    <h1>Fast Income BD</h1>
-    <p>Telegram Mini App</p>
+<div class="header">
+  <div class="logo">৳</div>
+  <h1>Fast Income BD</h1>
+  <p>Telegram Mini App</p>
+</div>
+
+<div class="card balance">
+  <div class="balance-title">আপনার বর্তমান ব্যালেন্স</div>
+
+  <div class="points">
+    <span id="points">0</span> Points
   </div>
 
-  <div class="balance">
-    <div class="balance-title">আপনার কয়েন ব্যালেন্স</div>
-    <div class="coins" id="coinBalance">0 Coins</div>
-    <p>100 Coins = 1 টাকা</p>
+  <div class="rate">
+    <b>1000 Points = 100 টাকা</b>
   </div>
+</div>
 
-  <div class="card">
-    <h2>🔐 অ্যাকাউন্ট অ্যাক্টিভেশন</h2>
-    <p>
-      বিজ্ঞাপন দেখার সুবিধা চালু করতে অ্যাকাউন্ট অ্যাক্টিভেট করুন।
-    </p>
+<div class="card">
+  <h2>🔐 অ্যাকাউন্ট অ্যাক্টিভেশন</h2>
 
-    <button class="activate" onclick="activateAccount()">
-      ৮০ টাকা দিয়ে অ্যাক্টিভেট করুন
-    </button>
-  </div>
+  <p class="info">
+    বিজ্ঞাপন দেখার সুবিধা চালু করতে আপনার অ্যাকাউন্ট অ্যাক্টিভেট করুন।
+  </p>
 
-  <div class="card">
-    <h2>📺 বিজ্ঞাপন দেখুন</h2>
-    <p>
-      বিজ্ঞাপন দেখার পর আপনার অ্যাকাউন্টে কয়েন যোগ হবে।
-    </p>
+  <button class="activate" onclick="activateAccount()">
+    ৮০ টাকা দিয়ে অ্যাক্টিভেট করুন
+  </button>
+</div>
 
-    <button class="watch" onclick="watchAd()">
-      ▶ বিজ্ঞাপন দেখুন
-    </button>
-  </div>
+<div class="card">
+  <h2>📺 বিজ্ঞাপন দেখুন</h2>
 
-  <div class="card">
-    <h2>💰 টাকা উত্তোলন</h2>
-    <p>
-      পর্যাপ্ত কয়েন জমা হলে আপনার নির্ধারিত পদ্ধতিতে উত্তোলনের অনুরোধ করতে পারবেন।
-    </p>
+  <p class="info">
+    বিজ্ঞাপন দেখার পর আপনার অ্যাকাউন্টে Points যোগ হবে।
+  </p>
 
-    <button class="withdraw" onclick="withdraw()">
-      টাকা উত্তোলন
-    </button>
-  </div>
+  <button class="watch" onclick="watchAd()">
+    ▶ বিজ্ঞাপন দেখুন
+  </button>
 
-  <div class="menu">
-    <div>👤 প্রোফাইল</div>
-    <div>📋 হিস্টোরি</div>
-    <div>🎁 বোনাস</div>
-    <div>📞 সাপোর্ট</div>
-  </div>
+  <div id="status"></div>
+</div>
 
-  <div class="footer">
-    © 2026 Fast Income BD
-  </div>
+<div class="card">
+  <h2>💰 টাকা উত্তোলন</h2>
 
-  <script>
-    let coins = 0;
-    let activated = false;
+  <p class="info">
+    আপনার ব্যালেন্স ১০০০ Points হলে ১০০ টাকা উত্তোলনের জন্য আবেদন করতে পারবেন।
+  </p>
 
-    function activateAccount() {
-      alert("অ্যাকাউন্ট অ্যাক্টিভেশন সিস্টেম পরবর্তী ধাপে যুক্ত করা হবে।");
-    }
+  <button class="withdraw" onclick="withdrawMoney()">
+    টাকা উত্তোলন
+  </button>
+</div>
 
-    function watchAd() {
-      if (!activated) {
-        alert("প্রথমে আপনার অ্যাকাউন্ট অ্যাক্টিভেট করুন।");
-        return;
-      }
+<script>
+let points = Number(localStorage.getItem("points")) || 0;
+let activated = localStorage.getItem("activated") === "true";
 
-      coins += 10;
-      document.getElementById("coinBalance").innerText =
-        coins + " Coins";
+document.getElementById("points").innerText = points;
 
-      alert("অভিনন্দন! ১০ Coins যোগ হয়েছে।");
-    }
+function activateAccount(){
+  if(activated){
+    alert("আপনার অ্যাকাউন্ট ইতিমধ্যে অ্যাক্টিভেট করা হয়েছে।");
+    return;
+  }
 
-    function withdraw() {
-      if (coins < 1000) {
-        alert("উত্তোলনের জন্য কমপক্ষে 1000 Coins প্রয়োজন।");
-        return;
-      }
+  alert("পেমেন্ট সিস্টেম পরবর্তীতে যুক্ত করা হবে।");
+}
 
-      alert("উত্তোলন সিস্টেম পরবর্তী ধাপে যুক্ত করা হবে।");
-    }
+function watchAd(){
+  if(!activated){
+    alert("প্রথমে ৮০ টাকা দিয়ে অ্যাকাউন্ট অ্যাক্টিভেট করুন।");
+    return;
+  }
 
-    if (window.Telegram && Telegram.WebApp) {
-      Telegram.WebApp.ready();
-      Telegram.WebApp.expand();
-    }
-  </script>
+  // পরীক্ষামূলকভাবে ১০ Points যোগ হবে
+  points += 10;
+
+  localStorage.setItem("points", points);
+  document.getElementById("points").innerText = points;
+
+  document.getElementById("status").innerText =
+    "অভিনন্দন! ১০ Points যোগ হয়েছে।";
+}
+
+function withdrawMoney(){
+  if(points < 1000){
+    alert(
+      "উত্তোলনের জন্য কমপক্ষে ১০০০ Points প্রয়োজন।\nবর্তমান Points: " +
+      points
+    );
+    return;
+  }
+
+  let taka = Math.floor(points / 10);
+
+  alert(
+    "আপনার উত্তোলনযোগ্য টাকা: " +
+    taka +
+    " টাকা\n\nউত্তোলন সিস্টেম পরবর্তীতে যুক্ত করা হবে।"
+  );
+}
+</script>
 
 </body>
 </html>
