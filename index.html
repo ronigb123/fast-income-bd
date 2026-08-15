@@ -7,6 +7,7 @@
 
 <style>
 *{box-sizing:border-box}
+
 body{
 margin:0;
 font-family:Arial,sans-serif;
@@ -14,6 +15,7 @@ background:#f2f8f4;
 color:#173b2a;
 padding-bottom:80px
 }
+
 .header{
 background:#008c4c;
 color:white;
@@ -21,6 +23,7 @@ text-align:center;
 padding:30px 15px;
 border-radius:0 0 35px 35px
 }
+
 .logo{
 width:75px;
 height:75px;
@@ -34,7 +37,11 @@ justify-content:center;
 font-size:38px;
 font-weight:bold
 }
-.header h1{margin:12px 0 5px}
+
+.header h1{
+margin:12px 0 5px
+}
+
 .card{
 background:white;
 margin:16px;
@@ -42,13 +49,18 @@ padding:20px;
 border-radius:22px;
 box-shadow:0 3px 12px #00000012
 }
-.center{text-align:center}
+
+.center{
+text-align:center
+}
+
 .points{
 font-size:40px;
 font-weight:bold;
 color:#008c4c;
 margin:10px
 }
+
 button{
 width:100%;
 padding:15px;
@@ -56,24 +68,48 @@ margin-top:12px;
 border:0;
 border-radius:14px;
 font-size:17px;
-font-weight:bold
+font-weight:bold;
+cursor:pointer
 }
-.green{background:#008c4c;color:white}
-.yellow{background:#ffd43b;color:#173b2a}
+
+.green{
+background:#008c4c;
+color:white
+}
+
+.yellow{
+background:#ffd43b;
+color:#173b2a
+}
+
+.red{
+background:#e53935;
+color:white
+}
+
 .input,textarea,select{
 width:100%;
 padding:14px;
 margin-top:10px;
 border:1px solid #ddd;
 border-radius:12px;
-font-size:16px
+font-size:16px;
+outline:none
 }
-.section{display:none}
-.active{display:block}
+
+.section{
+display:none
+}
+
+.active{
+display:block
+}
+
 .history{
 padding:12px 0;
 border-bottom:1px solid #eee
 }
+
 .bottom{
 position:fixed;
 bottom:0;
@@ -84,6 +120,7 @@ display:flex;
 box-shadow:0 -3px 12px #0002;
 z-index:10
 }
+
 .bottom button{
 background:white;
 color:#008c4c;
@@ -91,6 +128,7 @@ font-size:12px;
 margin:0;
 padding:9px 3px
 }
+
 .badge{
 display:inline-block;
 padding:6px 12px;
@@ -98,44 +136,88 @@ border-radius:20px;
 background:#e5f7ec;
 color:#008c4c
 }
-.info{color:#666;line-height:1.6}
+
+.info{
+color:#666;
+line-height:1.6
+}
+
+.success{
+color:#008c4c;
+font-weight:bold
+}
+
+.warning{
+color:#d68900;
+font-weight:bold
+}
+
+.uidbox{
+font-size:11px;
+color:#777;
+word-break:break-all;
+background:#f5f5f5;
+padding:10px;
+border-radius:10px;
+margin-top:10px
+}
 </style>
 </head>
 
 <body>
 
 <div class="header">
+
 <div class="logo">৳</div>
+
 <h1>Fast Income BD</h1>
+
 <p>Telegram Mini App</p>
+
 </div>
+
+
+<!-- HOME -->
 
 <div id="home" class="section active">
 
 <div class="card center">
+
 <p>আপনার কয়েন ব্যালেন্স</p>
+
 <div class="points" id="points">0</div>
+
 <p>1000 Points = 100 টাকা</p>
+
 </div>
 
+
 <div class="card">
+
 <h2>🔐 অ্যাকাউন্ট অ্যাক্টিভেশন</h2>
+
 <p class="info">
-বিজ্ঞাপন দেখার সুবিধা চালু করতে অ্যাকাউন্ট অ্যাক্টিভেট করুন।
+বিজ্ঞাপন দেখার সুবিধা চালু করতে আপনার অ্যাকাউন্ট অ্যাক্টিভেট করুন।
 </p>
-<p>বর্তমান অবস্থা:
-<span id="status" class="badge">Inactive</span>
+
+<p>
+বর্তমান অবস্থা:
+<span id="status" class="badge">Checking...</span>
 </p>
 
 <button class="yellow" onclick="show('activation')">
 ৮০ টাকা দিয়ে অ্যাক্টিভেট করুন
 </button>
+
 </div>
 
+
 <div class="card">
+
 <h2>📺 বিজ্ঞাপন দেখুন</h2>
+
 <p class="info">
-সম্পূর্ণ ভিডিও দেখলে ১০ Points পাওয়ার ব্যবস্থা থাকবে।
+সম্পূর্ণ বিজ্ঞাপন দেখলে ১০ Points পাওয়ার ব্যবস্থা থাকবে।
 </p>
 
 <button class="green" onclick="watchAd()">
@@ -143,10 +225,14 @@ color:#008c4c
 </button>
 
 <p id="admsg"></p>
+
 </div>
 
+
 <div class="card">
+
 <h2>🎁 Daily Check-in</h2>
+
 <p class="info">
 প্রতিদিন একবার Check-in Bonus পাবেন।
 </p>
@@ -156,34 +242,53 @@ color:#008c4c
 </button>
 
 <p id="checkmsg"></p>
+
 </div>
 
 </div>
+
+
+<!-- ACTIVATION -->
 
 <div id="activation" class="section">
 
 <div class="card">
+
 <h2>🔐 Account Activation</h2>
 
 <p class="info">
 অ্যাকাউন্ট অ্যাক্টিভেট করতে ৮০ টাকা Send Money করুন।
 </p>
 
-<div class="card">
-<b>বিকাশ</b>
-<p>01935654366</p>
-</div>
 
 <div class="card">
-<b>নগদ</b>
-<p>01873570387</p>
+
+<b>বিকাশ</b>
+
+<p>01935654366</p>
+
 </div>
+
+
+<div class="card">
+
+<b>নগদ</b>
+
+<p>01873570387</p>
+
+</div>
+
 
 <p class="info">
+
 ⚠️ শুধুমাত্র Send Money গ্রহণযোগ্য।<br>
+
 ❌ Mobile Recharge গ্রহণযোগ্য নয়।<br>
+
 🔒 Rocket বর্তমানে Hold করা আছে।
+
 </p>
+
 
 <input
 id="txid"
@@ -191,19 +296,27 @@ class="input"
 placeholder="Transaction ID লিখুন"
 >
 
+
 <button class="yellow" onclick="activationRequest()">
 Activation Request
 </button>
 
+
 <p id="actmsg"></p>
+
 </div>
 
 </div>
+
+
+<!-- PROFILE -->
 
 <div id="profile" class="section">
 
 <div class="card">
+
 <h2>👤 User Profile</h2>
+
 
 <input
 id="name"
@@ -211,34 +324,60 @@ class="input"
 placeholder="আপনার নাম"
 >
 
+
 <input
 id="username"
 class="input"
 placeholder="Telegram Username"
 >
 
+
 <button class="green" onclick="saveProfile()">
 Profile Save
 </button>
 
+
 <p id="profilemsg"></p>
+
+
+<div class="uidbox">
+
+Firebase User ID:
+
+<br>
+
+<span id="firebaseUid">
+Loading...
+</span>
+
 </div>
+
+</div>
+
 
 <div class="card">
+
 <h2>📜 History</h2>
+
 <div id="history"></div>
+
 </div>
 
 </div>
+
+
+<!-- REFERRAL -->
 
 <div id="referral" class="section">
 
 <div class="card">
+
 <h2>🔗 Referral System</h2>
 
 <p class="info">
 প্রতি সফল Referral-এর জন্য ২০ টাকা Bonus পাওয়ার ব্যবস্থা থাকবে।
 </p>
+
 
 <input
 id="referralLink"
@@ -246,17 +385,24 @@ class="input"
 readonly
 >
 
+
 <button class="green" onclick="copyReferral()">
 Referral Link Copy
 </button>
 
+<p id="refmsg"></p>
+
 </div>
 
 </div>
+
+
+<!-- WITHDRAW -->
 
 <div id="withdraw" class="section">
 
 <div class="card">
+
 <h2>💰 টাকা উত্তোলন</h2>
 
 <p>
@@ -264,9 +410,13 @@ Referral Link Copy
 <b id="wpoints">0</b>
 </p>
 
+
 <p class="info">
+
 সর্বনিম্ন ১০০০ Points এবং সর্বোচ্চ ৫০০০ Points উত্তোলন করা যাবে।
+
 </p>
+
 
 <input
 id="amount"
@@ -275,11 +425,17 @@ type="number"
 placeholder="Points লিখুন"
 >
 
+
 <select id="method" class="input">
+
 <option value="bkash">বিকাশ</option>
+
 <option value="nagad">নগদ</option>
+
 <option value="rocket">Rocket — Hold</option>
+
 </select>
+
 
 <input
 id="number"
@@ -287,19 +443,27 @@ class="input"
 placeholder="আপনার পেমেন্ট নম্বর"
 >
 
+
 <button class="green" onclick="withdraw()">
 উত্তোলনের আবেদন
 </button>
 
+
 <p id="wmsg"></p>
+
 </div>
 
 </div>
+
+
+<!-- SUPPORT -->
 
 <div id="support" class="section">
 
 <div class="card">
+
 <h2>🆘 Support</h2>
+
 
 <textarea
 id="supportText"
@@ -307,14 +471,20 @@ rows="5"
 placeholder="আপনার সমস্যাটি লিখুন"
 ></textarea>
 
+
 <button class="green" onclick="support()">
 Support পাঠান
 </button>
 
+
 <p id="supportmsg"></p>
+
 </div>
 
 </div>
+
+
+<!-- BOTTOM MENU -->
 
 <div class="bottom">
 
@@ -340,251 +510,10 @@ Support পাঠান
 
 </div>
 
-<script>
 
-let points=Number(localStorage.getItem("points")||0);
-let active=localStorage.getItem("active")==="true";
-let history=JSON.parse(localStorage.getItem("history")||"[]");
 
-function show(id){
+<!-- MAIN JAVASCRIPT -->
 
-document.querySelectorAll(".section")
-.forEach(x=>x.classList.remove("active"));
-
-document.getElementById(id).classList.add("active");
-
-window.scrollTo(0,0);
-}
-
-function update(){
-
-document.getElementById("points").innerText=points;
-document.getElementById("wpoints").innerText=points;
-
-document.getElementById("status").innerText=
-active?"Active":"Inactive";
-
-document.getElementById("status").style.color=
-active?"#008c4c":"#777";
-
-renderHistory();
-}
-
-function savePoints(){
-
-localStorage.setItem("points",points);
-update();
-}
-
-function addHistory(text){
-
-history.unshift({
-text:text,
-date:new Date().toLocaleString("bn-BD")
-});
-
-localStorage.setItem(
-"history",
-JSON.stringify(history)
-);
-
-renderHistory();
-}
-
-function renderHistory(){
-
-let box=document.getElementById("history");
-
-if(history.length===0){
-
-box.innerHTML=
-"<p class='info'>কোনো History নেই।</p>";
-
-return;
-}
-
-box.innerHTML=history.map(x=>
-
-"<div class='history'>"+
-"<b>"+x.text+"</b><br>"+
-"<small>"+x.date+"</small>"+
-"</div>"
-
-).join("");
-}
-
-function activationRequest(){
-
-let tx=
-document.getElementById("txid").value.trim();
-
-if(!tx){
-
-alert("Transaction ID লিখুন।");
-return;
-}
-
-document.getElementById("actmsg").innerText=
-"Activation Request জমা হয়েছে। Admin verification প্রয়োজন।";
-
-addHistory("Account Activation Request");
-}
-
-function watchAd(){
-
-if(!active){
-
-alert("আগে Account Activate করুন।");
-return;
-}
-
-points+=10;
-
-savePoints();
-
-document.getElementById("admsg").innerText=
-"+10 Points যোগ হয়েছে।";
-
-addHistory("+10 Points — Advertisement");
-}
-
-function checkin(){
-
-if(!active){
-
-alert("আগে Account Activate করুন।");
-return;
-}
-
-let today=
-new Date().toISOString().slice(0,10);
-
-let last=
-localStorage.getItem("checkin");
-
-if(last===today){
-
-document.getElementById("checkmsg").innerText=
-"আজকের Check-in ইতিমধ্যে নেওয়া হয়েছে।";
-
-return;
-}
-
-points+=10;
-
-localStorage.setItem("checkin",today);
-
-savePoints();
-
-document.getElementById("checkmsg").innerText=
-"আজকের Bonus +10 Points";
-
-addHistory("+10 Points — Daily Check-in");
-}
-
-function saveProfile(){
-
-localStorage.setItem(
-"name",
-document.getElementById("name").value
-);
-
-localStorage.setItem(
-"username",
-document.getElementById("username").value
-);
-
-document.getElementById("profilemsg").innerText=
-"Profile Save হয়েছে।";
-}
-
-function copyReferral(){
-
-navigator.clipboard.writeText(
-document.getElementById("referralLink").value
-);
-
-alert("Referral Link Copy হয়েছে।");
-}
-
-function withdraw(){
-
-let amount=Number(
-document.getElementById("amount").value
-);
-
-let method=
-document.getElementById("method").value;
-
-let number=
-document.getElementById("number").value.trim();
-
-if(amount<1000 || amount>5000){
-
-alert("1000 থেকে 5000 Points-এর মধ্যে দিন।");
-return;
-}
-
-if(amount>points){
-
-alert("আপনার পর্যাপ্ত Points নেই।");
-return;
-}
-
-if(!number){
-
-alert("পেমেন্ট নম্বর দিন।");
-return;
-}
-
-if(method==="rocket"){
-
-alert("Rocket বর্তমানে Hold করা আছে।");
-return;
-}
-
-document.getElementById("wmsg").innerText=
-"Withdrawal Request জমা হয়েছে। Admin verification প্রয়োজন।";
-
-addHistory(
-"Withdrawal Request — "+
-amount+
-" Points"
-);
-}
-
-function support(){
-
-let text=
-document.getElementById("supportText")
-.value.trim();
-
-if(!text){
-
-alert("সমস্যাটি লিখুন।");
-return;
-}
-
-document.getElementById("supportmsg").innerText=
-"Support Request জমা হয়েছে।";
-
-addHistory("Support Request");
-}
-
-document.getElementById("name").value=
-localStorage.getItem("name")||"";
-
-document.getElementById("username").value=
-localStorage.getItem("username")||"";
-
-document.getElementById("referralLink").value=
-"https://t.me/FastIncomeBDBot";
-
-update();
-
-</script>
-
-<!-- Firebase -->
 <script type="module">
 
 import { initializeApp }
@@ -602,9 +531,13 @@ getFirestore,
 doc,
 getDoc,
 setDoc,
+updateDoc,
 serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+
+
+/* FIREBASE CONFIG */
 
 const firebaseConfig = {
 
@@ -631,6 +564,9 @@ measurementId:
 
 };
 
+
+/* FIREBASE START */
+
 const app =
 initializeApp(firebaseConfig);
 
@@ -640,15 +576,298 @@ getAuth(app);
 const db =
 getFirestore(app);
 
+
+/* GLOBAL VARIABLES */
+
+let currentUser = null;
+
+let userData = null;
+
+
+/* PAGE NAVIGATION */
+
+window.show = function(id){
+
+document
+.querySelectorAll(".section")
+.forEach(x =>
+x.classList.remove("active")
+);
+
+document
+.getElementById(id)
+.classList.add("active");
+
+window.scrollTo(0,0);
+
+};
+
+
+/* UPDATE SCREEN */
+
+function updateScreen(){
+
+if(!userData){
+return;
+}
+
+let points =
+Number(userData.points || 0);
+
+let active =
+userData.accountActive === true;
+
+
+document.getElementById("points")
+.innerText = points;
+
+document.getElementById("wpoints")
+.innerText = points;
+
+
+document.getElementById("status")
+.innerText =
+active ? "Active" : "Inactive";
+
+
+document.getElementById("status")
+.style.color =
+active ? "#008c4c" : "#777";
+
+
+if(currentUser){
+
+document.getElementById("firebaseUid")
+.innerText =
+currentUser.uid;
+
+}
+
+renderHistory();
+
+}
+
+
+/* HISTORY */
+
+function getHistory(){
+
+try{
+
+return JSON.parse(
+localStorage.getItem("history_"+currentUser.uid) || "[]"
+);
+
+}catch(e){
+
+return [];
+
+}
+
+}
+
+
+function saveHistory(data){
+
+localStorage.setItem(
+"history_"+currentUser.uid,
+JSON.stringify(data)
+);
+
+}
+
+
+function addHistory(text){
+
+if(!currentUser){
+return;
+}
+
+let history =
+getHistory();
+
+history.unshift({
+
+text:text,
+
+date:new Date().toLocaleString("bn-BD")
+
+});
+
+if(history.length > 50){
+
+history =
+history.slice(0,50);
+
+}
+
+saveHistory(history);
+
+renderHistory();
+
+}
+
+
+function renderHistory(){
+
+let box =
+document.getElementById("history");
+
+if(!currentUser){
+
+box.innerHTML =
+"<p class='info'>Loading...</p>";
+
+return;
+
+}
+
+let history =
+getHistory();
+
+if(history.length === 0){
+
+box.innerHTML =
+"<p class='info'>কোনো History নেই।</p>";
+
+return;
+
+}
+
+box.innerHTML =
+history.map(x =>
+
+"<div class='history'>"+
+"<b>"+escapeHtml(x.text)+"</b><br>"+
+"<small>"+escapeHtml(x.date)+"</small>"+
+"</div>"
+
+).join("");
+
+}
+
+
+function escapeHtml(text){
+
+return String(text)
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* LOAD USER */
+
+async function loadUser(user){
+
+currentUser = user;
+
+console.log(
+"Firebase UID:",
+user.uid
+);
+
+
+const userRef =
+doc(db,"users",user.uid);
+
+
+try{
+
+const userSnap =
+await getDoc(userRef);
+
+
+if(!userSnap.exists()){
+
+userData = {
+
+uid:user.uid,
+
+points:0,
+
+accountActive:false,
+
+referralBonus:0,
+
+name:"",
+
+username:"",
+
+activationStatus:"none",
+
+activationTxid:"",
+
+createdAt:serverTimestamp()
+
+};
+
+
+await setDoc(
+userRef,
+userData
+);
+
+console.log(
+"New user created"
+);
+
+}else{
+
+userData =
+userSnap.data();
+
+console.log(
+"User loaded"
+);
+
+}
+
+
+/* PROFILE */
+
+document.getElementById("name").value =
+userData.name || "";
+
+document.getElementById("username").value =
+userData.username || "";
+
+
+/* UPDATE */
+
+updateScreen();
+
+
+}catch(error){
+
+console.error(
+"User Load Error:",
+error
+);
+
+alert(
+"Firebase Error: "+error.message
+);
+
+}
+
+}
+
+
+/* AUTHENTICATION */
+
 signInAnonymously(auth)
 .then(() => {
 
 console.log(
-"Anonymous login started"
+"Anonymous login successful"
 );
 
 })
-.catch((error) => {
+.catch(error => {
 
 console.error(
 "Anonymous Login Error:",
@@ -656,80 +875,658 @@ error
 );
 
 alert(
-"Firebase Login Error: "+
-error.message
+"Login Error: "+error.message
 );
 
 });
 
-onAuthStateChanged(auth, async (user) => {
 
-if(!user){
+onAuthStateChanged(
+auth,
+async user => {
 
-console.log(
-"User not logged in"
-);
+if(user){
 
-return;
-}
-
-console.log(
-"Firebase UID:",
-user.uid
-);
-
-try{
-
-const userRef =
-doc(
-db,
-"users",
-user.uid
-);
-
-const userSnap =
-await getDoc(userRef);
-
-if(!userSnap.exists()){
-
-await setDoc(
-userRef,
-{
-uid:user.uid,
-points:0,
-accountActive:false,
-referralBonus:0,
-createdAt:serverTimestamp()
-}
-);
-
-console.log(
-"User document created successfully"
-);
+await loadUser(user);
 
 }else{
 
 console.log(
-"User document already exists"
-);
-
-}
-
-}catch(error){
-
-console.error(
-"Firestore Error:",
-error
-);
-
-alert(
-"Firestore Error: "+
-error.message
+"User signed out"
 );
 
 }
 
 });
+
+
+/* SAVE PROFILE */
+
+window.saveProfile = async function(){
+
+if(!currentUser || !userData){
+
+alert("User এখনও Login হয়নি।");
+
+return;
+
+}
+
+
+let name =
+document.getElementById("name")
+.value
+.trim();
+
+
+let username =
+document.getElementById("username")
+.value
+.trim();
+
+
+if(!name){
+
+alert("আপনার নাম লিখুন।");
+
+return;
+
+}
+
+
+try{
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+
+await updateDoc(
+userRef,
+{
+
+name:name,
+
+username:username
+
+});
+
+
+userData.name =
+name;
+
+userData.username =
+username;
+
+
+document.getElementById("profilemsg")
+.innerText =
+"Profile সফলভাবে Save হয়েছে।";
+
+
+addHistory(
+"Profile Updated"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Profile Save Error: "+error.message
+);
+
+}
+
+};
+
+
+/* ACTIVATION REQUEST */
+
+window.activationRequest = async function(){
+
+if(!currentUser || !userData){
+
+alert(
+"User এখনও প্রস্তুত হয়নি।"
+);
+
+return;
+
+}
+
+
+if(userData.accountActive === true){
+
+alert(
+"আপনার Account ইতিমধ্যে Active।"
+);
+
+return;
+
+}
+
+
+let tx =
+document.getElementById("txid")
+.value
+.trim();
+
+
+if(!tx){
+
+alert(
+"Transaction ID লিখুন।"
+);
+
+return;
+
+}
+
+
+try{
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+
+await updateDoc(
+userRef,
+{
+
+activationTxid:tx,
+
+activationStatus:"pending",
+
+activationRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+
+userData.activationTxid =
+tx;
+
+userData.activationStatus =
+"pending";
+
+
+document.getElementById("actmsg")
+.innerHTML =
+"<span class='success'>Activation Request জমা হয়েছে। Admin verification প্রয়োজন।</span>";
+
+
+addHistory(
+"Account Activation Request"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Activation Error: "+error.message
+);
+
+}
+
+};
+
+
+/* WATCH AD */
+
+window.watchAd = async function(){
+
+if(!userData){
+
+alert(
+"User Loading হচ্ছে।"
+);
+
+return;
+
+}
+
+
+if(userData.accountActive !== true){
+
+alert(
+"আগে Account Activate করুন।"
+);
+
+return;
+
+}
+
+
+/*
+এই অংশটি এখন DEMO POINT SYSTEM।
+আসল Ad Network বসানোর পরে
+শুধুমাত্র সত্যিকারের বিজ্ঞাপন সম্পূর্ণ হলে
+Points যোগ করা হবে।
+*/
+
+let points =
+Number(userData.points || 0);
+
+
+points += 10;
+
+
+try{
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+
+await updateDoc(
+userRef,
+{
+
+points:points
+
+});
+
+
+userData.points =
+points;
+
+
+document.getElementById("admsg")
+.innerText =
+"+10 Points যোগ হয়েছে।";
+
+
+addHistory(
+"+10 Points — Advertisement Demo"
+);
+
+
+updateScreen();
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Points Update Error: "+error.message
+);
+
+}
+
+};
+
+
+/* DAILY CHECK-IN */
+
+window.checkin = async function(){
+
+if(!userData){
+
+return;
+
+}
+
+
+if(userData.accountActive !== true){
+
+alert(
+"আগে Account Activate করুন।"
+);
+
+return;
+
+}
+
+
+let today =
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+let key =
+"checkin_"+currentUser.uid;
+
+
+let last =
+localStorage.getItem(key);
+
+
+if(last === today){
+
+document.getElementById("checkmsg")
+.innerText =
+"আজকের Check-in ইতিমধ্যে নেওয়া হয়েছে।";
+
+return;
+
+}
+
+
+let points =
+Number(userData.points || 0);
+
+
+points += 10;
+
+
+try{
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+
+await updateDoc(
+userRef,
+{
+
+points:points
+
+});
+
+
+userData.points =
+points;
+
+
+localStorage.setItem(
+key,
+today
+);
+
+
+document.getElementById("checkmsg")
+.innerText =
+"আজকের Bonus +10 Points";
+
+
+addHistory(
+"+10 Points — Daily Check-in"
+);
+
+
+updateScreen();
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Check-in Error: "+error.message
+);
+
+}
+
+};
+
+
+/* REFERRAL */
+
+document.getElementById("referralLink")
+.value =
+"https://t.me/FastIncomeBDBot";
+
+
+window.copyReferral = async function(){
+
+let link =
+document.getElementById("referralLink")
+.value;
+
+
+try{
+
+await navigator.clipboard.writeText(link);
+
+document.getElementById("refmsg")
+.innerText =
+"Referral Link Copy হয়েছে।";
+
+}catch(error){
+
+alert(
+"Link Copy করা যায়নি।"
+);
+
+}
+
+};
+
+
+/* WITHDRAW */
+
+window.withdraw = async function(){
+
+if(!userData){
+
+return;
+
+}
+
+
+if(userData.accountActive !== true){
+
+alert(
+"আগে Account Activate করুন।"
+);
+
+return;
+
+}
+
+
+let amount =
+Number(
+document.getElementById("amount").value
+);
+
+
+let method =
+document.getElementById("method").value;
+
+
+let number =
+document.getElementById("number")
+.value
+.trim();
+
+
+let points =
+Number(userData.points || 0);
+
+
+if(amount < 1000 || amount > 5000){
+
+alert(
+"1000 থেকে 5000 Points-এর মধ্যে দিন।"
+);
+
+return;
+
+}
+
+
+if(amount > points){
+
+alert(
+"আপনার পর্যাপ্ত Points নেই।"
+);
+
+return;
+
+}
+
+
+if(!number){
+
+alert(
+"পেমেন্ট নম্বর দিন।"
+);
+
+return;
+
+}
+
+
+if(method === "rocket"){
+
+alert(
+"Rocket বর্তমানে Hold করা আছে।"
+);
+
+return;
+
+}
+
+
+/*
+এখানে এখন Withdrawal Request
+ডাটাবেজে সংরক্ষণ করা হবে।
+*/
+
+try{
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+
+await updateDoc(
+userRef,
+{
+
+withdrawAmount:amount,
+
+withdrawMethod:method,
+
+withdrawNumber:number,
+
+withdrawStatus:"pending",
+
+withdrawRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+
+document.getElementById("wmsg")
+.innerHTML =
+"<span class='success'>Withdrawal Request জমা হয়েছে। Admin verification প্রয়োজন।</span>";
+
+
+addHistory(
+"Withdrawal Request — "+
+amount+
+" Points"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Withdrawal Error: "+error.message
+);
+
+}
+
+};
+
+
+/* SUPPORT */
+
+window.support = async function(){
+
+let text =
+document.getElementById("supportText")
+.value
+.trim();
+
+
+if(!text){
+
+alert(
+"সমস্যাটি লিখুন।"
+);
+
+return;
+
+}
+
+
+if(!currentUser){
+
+alert(
+"User এখনও Login হয়নি।"
+);
+
+return;
+
+}
+
+
+try{
+
+const userRef =
+doc(db,"users",currentUser.uid);
+
+
+await updateDoc(
+userRef,
+{
+
+supportMessage:text,
+
+supportStatus:"pending",
+
+supportRequestedAt:
+serverTimestamp()
+
+}
+
+);
+
+
+document.getElementById("supportmsg")
+.innerText =
+"Support Request জমা হয়েছে।";
+
+
+document.getElementById("supportText")
+.value = "";
+
+
+addHistory(
+"Support Request"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Support Error: "+error.message
+);
+
+}
+
+};
+
+
+/* INITIAL REFERRAL */
+
+document.getElementById("referralLink")
+.value =
+"https://t.me/FastIncomeBDBot";
 
 </script>
 
