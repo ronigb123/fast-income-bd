@@ -38,7 +38,9 @@ font-size:38px;
 font-weight:bold
 }
 
-.header h1{margin:12px 0 5px}
+.header h1{
+margin:12px 0 5px
+}
 
 .card{
 background:white;
@@ -78,10 +80,9 @@ background:#ffd43b;
 color:#173b2a
 }
 
-.activeBtn{
-background:#008c4c;
-color:white;
-border:2px solid #ffd43b
+.gray{
+background:#eeeeee;
+color:#333
 }
 
 .input,textarea,select{
@@ -90,11 +91,17 @@ padding:14px;
 margin-top:10px;
 border:1px solid #ddd;
 border-radius:12px;
-font-size:16px
+font-size:16px;
+outline:none
 }
 
-.section{display:none}
-.active{display:block}
+.section{
+display:none
+}
+
+.active{
+display:block
+}
 
 .history{
 padding:12px 0;
@@ -124,8 +131,19 @@ padding:9px 3px
 display:inline-block;
 padding:6px 12px;
 border-radius:20px;
+background:#eeeeee;
+color:#777;
+font-weight:bold
+}
+
+.badge.activeBadge{
 background:#e5f7ec;
 color:#008c4c
+}
+
+.badge.pendingBadge{
+background:#fff4d6;
+color:#a56a00
 }
 
 .info{
@@ -138,6 +156,26 @@ color:#008c4c;
 font-weight:bold
 }
 
+.warning{
+color:#a56a00;
+font-weight:bold
+}
+
+.paymentBox{
+background:#f8fff9;
+border:2px solid #e5f7ec;
+padding:15px;
+border-radius:15px;
+margin-top:12px
+}
+
+.number{
+font-size:21px;
+font-weight:bold;
+color:#008c4c;
+letter-spacing:1px
+}
+
 .uidbox{
 font-size:11px;
 color:#777;
@@ -147,15 +185,23 @@ padding:10px;
 border-radius:10px;
 margin-top:10px
 }
+
+.locked{
+opacity:.65
+}
 </style>
 </head>
 
 <body>
 
 <div class="header">
+
 <div class="logo">৳</div>
+
 <h1>Fast Income BD</h1>
+
 <p>Telegram Mini App</p>
+
 </div>
 
 
@@ -165,7 +211,7 @@ margin-top:10px
 
 <div class="card center">
 
-<p>আপনার কয়েন ব্যালেন্স</p>
+<p>আপনার Points Balance</p>
 
 <div class="points" id="points">0</div>
 
@@ -174,22 +220,33 @@ margin-top:10px
 </div>
 
 
-<!-- ACCOUNT STATUS -->
+<!-- ACTIVATION STATUS -->
 
 <div class="card">
 
-<h2>🔐 অ্যাকাউন্ট স্ট্যাটাস</h2>
+<h2>🔐 Account Activation</h2>
+
+<p class="info">
+বিজ্ঞাপন দেখা, Daily Check-in এবং Referral Bonus ব্যবহার করার আগে
+আপনার Account Activate করতে হবে।
+</p>
 
 <p>
 বর্তমান অবস্থা:
-<span id="status" class="badge">
-Checking...
-</span>
+<span id="status" class="badge">Checking...</span>
 </p>
 
-<!-- ACTIVE BUTTON -->
+<p class="warning">
+💰 Account Activation Fee: ৮০ টাকা
+</p>
 
-<div id="activeArea"></div>
+<button
+class="yellow"
+onclick="show('activation')">
+
+৮০ টাকা দিয়ে Account Activate করুন
+
+</button>
 
 </div>
 
@@ -198,10 +255,10 @@ Checking...
 
 <div class="card">
 
-<h2>📺 বিজ্ঞাপন দেখুন</h2>
+<h2>📺 Advertisement</h2>
 
 <p class="info">
-সম্পূর্ণ বিজ্ঞাপন দেখলে ১০ Points পাওয়ার ব্যবস্থা থাকবে।
+Account Active হওয়ার পরে বিজ্ঞাপন দেখে Points সংগ্রহ করতে পারবেন।
 </p>
 
 <button
@@ -225,10 +282,11 @@ onclick="watchAd()">
 <h2>🎁 Daily Check-in</h2>
 
 <p class="info">
-প্রতিদিন একবার Check-in Bonus পাবেন।
+প্রতিদিন একবার Check-in করে Bonus Points পাবেন।
 </p>
 
 <button
+id="checkButton"
 class="yellow"
 onclick="checkin()">
 
@@ -252,24 +310,47 @@ onclick="checkin()">
 <h2>🔐 Account Activation</h2>
 
 <p class="info">
-অ্যাকাউন্ট অ্যাক্টিভেট করতে ৮০ টাকা Send Money করুন।
+আপনার Account Activate করতে <b>৮০ টাকা</b> Send Money করুন।
 </p>
 
-<div class="card">
-<b>বিকাশ</b>
-<p>01935654366</p>
-</div>
+<div class="paymentBox">
 
-<div class="card">
-<b>নগদ</b>
-<p>01873570387</p>
-</div>
+<b>বিকাশ</b>
+
+<p class="number">
+01935654366
+</p>
 
 <p class="info">
-⚠️ শুধুমাত্র Send Money গ্রহণযোগ্য।<br>
-❌ Mobile Recharge গ্রহণযোগ্য নয়।<br>
-🔒 Rocket বর্তমানে Hold করা আছে।
+শুধু Send Money করুন।
 </p>
+
+</div>
+
+
+<div class="paymentBox">
+
+<b>নগদ</b>
+
+<p class="number">
+01873570387
+</p>
+
+<p class="info">
+শুধু Send Money করুন।
+</p>
+
+</div>
+
+
+<p class="info">
+
+⚠️ Mobile Recharge গ্রহণযোগ্য নয়।<br>
+⚠️ Rocket বর্তমানে Hold করা আছে।<br>
+🔒 টাকা পাঠানোর পরে Transaction ID দিন।
+
+</p>
+
 
 <input
 id="txid"
@@ -277,13 +358,15 @@ class="input"
 placeholder="Transaction ID লিখুন"
 >
 
+
 <button
 class="yellow"
 onclick="activationRequest()">
 
-Activation Request
+Activation Request পাঠান
 
 </button>
+
 
 <p id="actmsg"></p>
 
@@ -306,11 +389,13 @@ class="input"
 placeholder="আপনার নাম"
 >
 
+
 <input
 id="username"
 class="input"
 placeholder="Telegram Username"
 >
+
 
 <button
 class="green"
@@ -322,9 +407,11 @@ Profile Save
 
 <p id="profilemsg"></p>
 
+
 <div class="uidbox">
 
 Firebase User ID:
+
 <br>
 
 <span id="firebaseUid">
@@ -356,7 +443,8 @@ Loading...
 <h2>🔗 Referral System</h2>
 
 <p class="info">
-প্রতি সফল Referral-এর জন্য ২০ টাকা Bonus পাওয়ার ব্যবস্থা থাকবে।
+Account Active হওয়ার পরে Referral ব্যবহার করতে পারবেন।
+সফল Referral-এর জন্য ২০ টাকা Bonus।
 </p>
 
 <input
@@ -364,6 +452,7 @@ id="referralLink"
 class="input"
 readonly
 >
+
 
 <button
 class="green"
@@ -394,8 +483,11 @@ Referral Link Copy
 </p>
 
 <p class="info">
+
 সর্বনিম্ন ১০০০ Points এবং সর্বোচ্চ ৫০০০ Points উত্তোলন করা যাবে।
+
 </p>
+
 
 <input
 id="amount"
@@ -404,19 +496,30 @@ type="number"
 placeholder="Points লিখুন"
 >
 
+
 <select id="method" class="input">
 
-<option value="bkash">বিকাশ</option>
-<option value="nagad">নগদ</option>
-<option value="rocket">Rocket — Hold</option>
+<option value="bkash">
+বিকাশ
+</option>
+
+<option value="nagad">
+নগদ
+</option>
+
+<option value="rocket">
+Rocket — Hold
+</option>
 
 </select>
+
 
 <input
 id="number"
 class="input"
 placeholder="আপনার পেমেন্ট নম্বর"
 >
+
 
 <button
 class="green"
@@ -425,6 +528,7 @@ onclick="withdraw()">
 উত্তোলনের আবেদন
 
 </button>
+
 
 <p id="wmsg"></p>
 
@@ -447,6 +551,7 @@ rows="5"
 placeholder="আপনার সমস্যাটি লিখুন"
 ></textarea>
 
+
 <button
 class="green"
 onclick="support()">
@@ -455,6 +560,7 @@ Support পাঠান
 
 </button>
 
+
 <p id="supportmsg"></p>
 
 </div>
@@ -462,7 +568,7 @@ Support পাঠান
 </div>
 
 
-<!-- BOTTOM -->
+<!-- BOTTOM MENU -->
 
 <div class="bottom">
 
@@ -487,6 +593,7 @@ Support পাঠান
 </button>
 
 </div>
+
 
 
 <!-- FIREBASE -->
@@ -519,7 +626,7 @@ from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 const firebaseConfig = {
 
 apiKey:
-"AIzaSyCrhk6gRYkGM2U6EdZXOebo2U9F1Nli0Sc",
+"AIzaSyCrhk6gRYkGM2U6EdZXOebo2U9F1nli0Sc",
 
 authDomain:
 "fast-income-bd-ebfff.firebaseapp.com",
@@ -542,6 +649,8 @@ measurementId:
 };
 
 
+/* FIREBASE START */
+
 const app =
 initializeApp(firebaseConfig);
 
@@ -552,17 +661,22 @@ const db =
 getFirestore(app);
 
 
-let currentUser=null;
-let userData=null;
+/* GLOBAL */
+
+let currentUser = null;
+
+let userData = null;
 
 
 /* NAVIGATION */
 
-window.show=function(id){
+window.show = function(id){
 
 document
 .querySelectorAll(".section")
-.forEach(x=>x.classList.remove("active"));
+.forEach(x =>
+x.classList.remove("active")
+);
 
 document
 .getElementById(id)
@@ -573,122 +687,23 @@ window.scrollTo(0,0);
 };
 
 
-/* SCREEN UPDATE */
-
-function updateScreen(){
-
-if(!userData) return;
-
-const points=
-Number(userData.points||0);
-
-const isActive=
-userData.accountActive===true;
-
-
-document.getElementById("points")
-.innerText=points;
-
-document.getElementById("wpoints")
-.innerText=points;
-
-
-/* STATUS */
-
-document.getElementById("status")
-.innerText=
-isActive ? "Active" : "Inactive";
-
-
-document.getElementById("status")
-.style.color=
-isActive ? "#008c4c" : "#777";
-
-
-/* ACTIVE BUTTON */
-
-const area=
-document.getElementById("activeArea");
-
-
-if(isActive){
-
-area.innerHTML=`
-
-<button
-class="activeBtn"
-onclick="show('home')">
-
-✅ Account Active
-
-</button>
-
-<p class="success">
-আপনার অ্যাকাউন্ট সক্রিয় আছে। এখন বিজ্ঞাপন দেখে Points সংগ্রহ করতে পারবেন।
-</p>
-
-`;
-
-}else{
-
-area.innerHTML=`
-
-<button
-class="yellow"
-onclick="show('activation')">
-
-🔐 Activate Account
-
-</button>
-
-`;
-
-}
-
-
-/* AD BUTTON */
-
-const adButton=
-document.getElementById("adButton");
-
-if(isActive){
-
-adButton.disabled=false;
-adButton.innerText="▶ বিজ্ঞাপন দেখুন";
-adButton.style.opacity="1";
-
-}else{
-
-adButton.disabled=false;
-adButton.innerText="🔒 আগে Account Activate করুন";
-
-}
-
-
-if(currentUser){
-
-document.getElementById("firebaseUid")
-.innerText=currentUser.uid;
-
-}
-
-renderHistory();
-
-}
-
-
 /* HISTORY */
 
-function getHistory(){
+function historyKey(){
 
-if(!currentUser) return [];
+return currentUser
+? "history_"+currentUser.uid
+: "history_unknown";
+
+}
+
+
+function getHistory(){
 
 try{
 
 return JSON.parse(
-localStorage.getItem(
-"history_"+currentUser.uid
-)||"[]"
+localStorage.getItem(historyKey()) || "[]"
 );
 
 }catch(e){
@@ -703,7 +718,7 @@ return [];
 function saveHistory(data){
 
 localStorage.setItem(
-"history_"+currentUser.uid,
+historyKey(),
 JSON.stringify(data)
 );
 
@@ -712,11 +727,14 @@ JSON.stringify(data)
 
 function addHistory(text){
 
-if(!currentUser) return;
+if(!currentUser){
+return;
+}
 
-let history=getHistory();
+let data =
+getHistory();
 
-history.unshift({
+data.unshift({
 
 text:text,
 
@@ -724,13 +742,14 @@ date:new Date().toLocaleString("bn-BD")
 
 });
 
-if(history.length>50){
+if(data.length > 50){
 
-history=history.slice(0,50);
+data =
+data.slice(0,50);
 
 }
 
-saveHistory(history);
+saveHistory(data);
 
 renderHistory();
 
@@ -739,31 +758,32 @@ renderHistory();
 
 function renderHistory(){
 
-const box=
+let box =
 document.getElementById("history");
 
 if(!currentUser){
 
-box.innerHTML=
+box.innerHTML =
 "<p class='info'>Loading...</p>";
 
 return;
 
 }
 
-const history=getHistory();
+let data =
+getHistory();
 
-if(history.length===0){
+if(data.length === 0){
 
-box.innerHTML=
+box.innerHTML =
 "<p class='info'>কোনো History নেই।</p>";
 
 return;
 
 }
 
-box.innerHTML=
-history.map(x=>
+box.innerHTML =
+data.map(x =>
 
 "<div class='history'>"+
 "<b>"+escapeHtml(x.text)+"</b><br>"+
@@ -778,7 +798,6 @@ history.map(x=>
 function escapeHtml(text){
 
 return String(text)
-
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -788,24 +807,128 @@ return String(text)
 }
 
 
+/* UPDATE SCREEN */
+
+function updateScreen(){
+
+if(!userData){
+return;
+}
+
+let points =
+Number(userData.points || 0);
+
+let active =
+userData.accountActive === true;
+
+let pending =
+userData.activationStatus === "pending";
+
+
+document.getElementById("points")
+.innerText = points;
+
+document.getElementById("wpoints")
+.innerText = points;
+
+
+/* STATUS */
+
+let status =
+document.getElementById("status");
+
+
+if(active){
+
+status.innerText =
+"Active";
+
+status.className =
+"badge activeBadge";
+
+}else if(pending){
+
+status.innerText =
+"Pending Approval";
+
+status.className =
+"badge pendingBadge";
+
+}else{
+
+status.innerText =
+"Inactive";
+
+status.className =
+"badge";
+
+}
+
+
+/* BUTTONS */
+
+if(active){
+
+document.getElementById("adButton")
+.innerText =
+"▶ বিজ্ঞাপন দেখুন";
+
+document.getElementById("checkButton")
+.innerText =
+"আজকের Check-in";
+
+}else{
+
+document.getElementById("adButton")
+.innerText =
+"🔒 আগে Account Activate করুন";
+
+document.getElementById("checkButton")
+.innerText =
+"🔒 আগে Account Activate করুন";
+
+}
+
+
+/* UID */
+
+if(currentUser){
+
+document.getElementById("firebaseUid")
+.innerText =
+currentUser.uid;
+
+}
+
+
+renderHistory();
+
+}
+
+
 /* LOAD USER */
 
 async function loadUser(user){
 
-currentUser=user;
+currentUser =
+user;
 
-const userRef=
-doc(db,"users",user.uid);
+const userRef =
+doc(
+db,
+"users",
+user.uid
+);
 
 try{
 
-const snap=
+const snap =
 await getDoc(userRef);
 
 
 if(!snap.exists()){
 
-userData={
+userData = {
 
 uid:user.uid,
 
@@ -834,7 +957,8 @@ userData
 
 }else{
 
-userData=snap.data();
+userData =
+snap.data();
 
 }
 
@@ -842,11 +966,23 @@ userData=snap.data();
 /* PROFILE */
 
 document.getElementById("name")
-.value=userData.name||"";
+.value =
+userData.name || "";
 
 document.getElementById("username")
-.value=userData.username||"";
+.value =
+userData.username || "";
 
+
+/* REFERRAL */
+
+document.getElementById("referralLink")
+.value =
+"https://t.me/FastIncomeBDBot?start="+
+user.uid;
+
+
+/* SCREEN */
 
 updateScreen();
 
@@ -856,7 +992,8 @@ updateScreen();
 console.error(error);
 
 alert(
-"Firebase Error: "+error.message
+"Firebase Error: "+
+error.message
 );
 
 }
@@ -867,12 +1004,13 @@ alert(
 /* AUTH */
 
 signInAnonymously(auth)
-.catch(error=>{
+.catch(error => {
 
 console.error(error);
 
 alert(
-"Login Error: "+error.message
+"Login Error: "+
+error.message
 );
 
 });
@@ -880,7 +1018,7 @@ alert(
 
 onAuthStateChanged(
 auth,
-async user=>{
+async user => {
 
 if(user){
 
@@ -891,35 +1029,30 @@ await loadUser(user);
 });
 
 
-/* ACTIVATION REQUEST */
+/* PROFILE SAVE */
 
-window.activationRequest=
+window.saveProfile =
 async function(){
 
-if(!currentUser||!userData){
+if(!currentUser){
 
-alert("User এখনও প্রস্তুত হয়নি।");
 return;
 
 }
 
+let name =
+document.getElementById("name")
+.value.trim();
 
-if(userData.accountActive===true){
-
-alert("আপনার Account ইতিমধ্যে Active।");
-return;
-
-}
-
-
-const tx=
-document.getElementById("txid")
+let username =
+document.getElementById("username")
 .value.trim();
 
 
-if(!tx){
+if(!name){
 
-alert("Transaction ID লিখুন।");
+alert("আপনার নাম লিখুন।");
+
 return;
 
 }
@@ -927,11 +1060,115 @@ return;
 
 try{
 
-const ref=
-doc(db,"users",currentUser.uid);
+await updateDoc(
+
+doc(
+db,
+"users",
+currentUser.uid
+),
+
+{
+
+name:name,
+
+username:username
+
+}
+
+);
+
+
+userData.name =
+name;
+
+userData.username =
+username;
+
+
+document.getElementById("profilemsg")
+.innerText =
+"Profile সফলভাবে Save হয়েছে।";
+
+
+addHistory(
+"Profile Updated"
+);
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"Profile Error: "+
+error.message
+);
+
+}
+
+};
+
+
+/* ACTIVATION REQUEST */
+
+window.activationRequest =
+async function(){
+
+if(!currentUser || !userData){
+
+alert(
+"Account Loading হচ্ছে।"
+);
+
+return;
+
+}
+
+
+/* ALREADY ACTIVE */
+
+if(
+userData.accountActive === true
+){
+
+alert(
+"আপনার Account ইতিমধ্যে Active।"
+);
+
+return;
+
+}
+
+
+let tx =
+document
+.getElementById("txid")
+.value
+.trim();
+
+
+if(!tx){
+
+alert(
+"Transaction ID লিখুন।"
+);
+
+return;
+
+}
+
+
+try{
 
 await updateDoc(
-ref,
+
+doc(
+db,
+"users",
+currentUser.uid
+),
+
 {
 
 activationTxid:tx,
@@ -946,18 +1183,27 @@ serverTimestamp()
 );
 
 
-userData.activationTxid=tx;
-userData.activationStatus="pending";
+userData.activationTxid =
+tx;
+
+userData.activationStatus =
+"pending";
 
 
 document.getElementById("actmsg")
-.innerHTML=
-"<span class='success'>Activation Request জমা হয়েছে। Admin verification প্রয়োজন।</span>";
+.innerHTML =
+"<span class='success'>"+
+"Activation Request জমা হয়েছে। "+
+"Admin verification-এর পর Account Active হবে।"+
+"</span>";
 
 
 addHistory(
-"Account Activation Request"
+"Activation Request — TXID: "+tx
 );
+
+
+updateScreen();
 
 
 }catch(error){
@@ -965,7 +1211,8 @@ addHistory(
 console.error(error);
 
 alert(
-"Activation Error: "+error.message
+"Activation Request Error: "+
+error.message
 );
 
 }
@@ -975,69 +1222,75 @@ alert(
 
 /* WATCH AD */
 
-window.watchAd=
+window.watchAd =
 async function(){
 
 if(!userData){
 
-alert("User Loading হচ্ছে।");
 return;
 
 }
 
 
-if(userData.accountActive!==true){
+if(
+userData.accountActive !== true
+){
 
 alert(
 "আগে Account Activate করুন।"
 );
 
+show("activation");
+
 return;
 
 }
 
 
 /*
-DEMO AD SYSTEM
+DEMO POINT SYSTEM
 
-পরে আসল Ad Network যুক্ত করব।
+এখানে Active User
+বিজ্ঞাপন চাপলে +10 Points হবে।
+
+পরবর্তীতে আসল Ad Network
+যোগ করলে এখানে সেটি বসানো যাবে।
 */
 
-const oldPoints=
-Number(userData.points||0);
+let points =
+Number(userData.points || 0);
 
-const newPoints=
-oldPoints+10;
+points += 10;
 
 
 try{
 
-const ref=
-doc(db,"users",currentUser.uid);
-
-
-/*
-Firestore Rules অনুযায়ী
-একবারে সর্বোচ্চ +10
-*/
-
 await updateDoc(
-ref,
+
+doc(
+db,
+"users",
+currentUser.uid
+),
+
 {
 
-points:newPoints
+points:points
 
 }
+
 );
 
 
-userData.points=
-newPoints;
+userData.points =
+points;
 
 
 document.getElementById("admsg")
-.innerHTML=
-"<span class='success'>✅ বিজ্ঞাপন সম্পন্ন! +10 Points যোগ হয়েছে।</span>";
+.innerHTML =
+"<span class='success'>"+
+"+10 Points যোগ হয়েছে।"+
+"</span>";
 
 
 addHistory(
@@ -1053,7 +1306,8 @@ updateScreen();
 console.error(error);
 
 alert(
-"Points Update Error: "+error.message
+"Points Error: "+
+error.message
 );
 
 }
@@ -1063,37 +1317,49 @@ alert(
 
 /* DAILY CHECK-IN */
 
-window.checkin=
+window.checkin =
 async function(){
 
-if(!userData) return;
-
-
-if(userData.accountActive!==true){
-
-alert(
-"আগে Account Activate করুন।"
-);
+if(!userData){
 
 return;
 
 }
 
 
-const today=
+if(
+userData.accountActive !== true
+){
+
+alert(
+"আগে Account Activate করুন।"
+);
+
+show("activation");
+
+return;
+
+}
+
+
+let today =
 new Date()
 .toISOString()
 .slice(0,10);
 
 
-const key=
+let key =
 "checkin_"+currentUser.uid;
 
 
-if(localStorage.getItem(key)===today){
+let last =
+localStorage.getItem(key);
+
+
+if(last === today){
 
 document.getElementById("checkmsg")
-.innerText=
+.innerText =
 "আজকের Check-in ইতিমধ্যে নেওয়া হয়েছে।";
 
 return;
@@ -1101,31 +1367,33 @@ return;
 }
 
 
-const oldPoints=
-Number(userData.points||0);
+let points =
+Number(userData.points || 0);
 
-const newPoints=
-oldPoints+10;
+points += 10;
 
 
 try{
 
-const ref=
-doc(db,"users",currentUser.uid);
-
-
 await updateDoc(
-ref,
+
+doc(
+db,
+"users",
+currentUser.uid
+),
+
 {
 
-points:newPoints
+points:points
 
 }
+
 );
 
 
-userData.points=
-newPoints;
+userData.points =
+points;
 
 
 localStorage.setItem(
@@ -1135,8 +1403,10 @@ today
 
 
 document.getElementById("checkmsg")
-.innerText=
-"আজকের Bonus +10 Points";
+.innerHTML =
+"<span class='success'>"+
+"আজকের Bonus +10 Points"+
+"</span>";
 
 
 addHistory(
@@ -1152,7 +1422,8 @@ updateScreen();
 console.error(error);
 
 alert(
-"Check-in Error: "+error.message
+"Check-in Error: "+
+error.message
 );
 
 }
@@ -1160,100 +1431,49 @@ alert(
 };
 
 
-/* PROFILE */
+/* REFERRAL COPY */
 
-window.saveProfile=
+window.copyReferral =
 async function(){
 
-if(!currentUser||!userData){
+if(
+!userData ||
+userData.accountActive !== true
+){
 
-alert("User এখনও Login হয়নি।");
+alert(
+"Referral ব্যবহার করতে আগে Account Activate করুন।"
+);
+
+show("activation");
+
 return;
 
 }
 
 
-const name=
-document.getElementById("name")
-.value.trim();
-
-const username=
-document.getElementById("username")
-.value.trim();
-
-
-if(!name){
-
-alert("আপনার নাম লিখুন।");
-return;
-
-}
+let link =
+document
+.getElementById("referralLink")
+.value;
 
 
 try{
 
-const ref=
-doc(db,"users",currentUser.uid);
+await navigator.clipboard
+.writeText(link);
 
 
-await updateDoc(
-ref,
-{
-
-name:name,
-
-username:username
-
-}
-);
-
-
-userData.name=name;
-userData.username=username;
-
-
-document.getElementById("profilemsg")
-.innerText=
-"Profile সফলভাবে Save হয়েছে。";
-
-
-addHistory("Profile Updated");
+document.getElementById("refmsg")
+.innerText =
+"Referral Link Copy হয়েছে।";
 
 
 }catch(error){
 
 alert(
-"Profile Save Error: "+error.message
+"Link Copy করা যায়নি।"
 );
-
-}
-
-};
-
-
-/* REFERRAL */
-
-document.getElementById("referralLink")
-.value=
-"https://t.me/FastIncomeBDBot";
-
-
-window.copyReferral=
-async function(){
-
-try{
-
-await navigator.clipboard.writeText(
-document.getElementById("referralLink").value
-);
-
-document.getElementById("refmsg")
-.innerText=
-"Referral Link Copy হয়েছে।";
-
-}catch(error){
-
-alert("Link Copy করা যায়নি।");
 
 }
 
@@ -1262,40 +1482,60 @@ alert("Link Copy করা যায়নি।");
 
 /* WITHDRAW */
 
-window.withdraw=
+window.withdraw =
 async function(){
 
-if(!userData) return;
-
-
-if(userData.accountActive!==true){
-
-alert(
-"আগে Account Activate করুন।"
-);
+if(!userData){
 
 return;
 
 }
 
 
-const amount=
-Number(
-document.getElementById("amount").value
+if(
+userData.accountActive !== true
+){
+
+alert(
+"Withdraw করতে আগে Account Activate করুন।"
 );
 
-const method=
-document.getElementById("method").value;
+show("activation");
 
-const number=
-document.getElementById("number")
-.value.trim();
+return;
 
-const points=
-Number(userData.points||0);
+}
 
 
-if(amount<1000||amount>5000){
+let amount =
+Number(
+document
+.getElementById("amount")
+.value
+);
+
+
+let method =
+document
+.getElementById("method")
+.value;
+
+
+let number =
+document
+.getElementById("number")
+.value
+.trim();
+
+
+let points =
+Number(userData.points || 0);
+
+
+if(
+amount < 1000 ||
+amount > 5000
+){
 
 alert(
 "1000 থেকে 5000 Points-এর মধ্যে দিন।"
@@ -1306,7 +1546,7 @@ return;
 }
 
 
-if(amount>points){
+if(amount > points){
 
 alert(
 "আপনার পর্যাপ্ত Points নেই।"
@@ -1319,13 +1559,16 @@ return;
 
 if(!number){
 
-alert("পেমেন্ট নম্বর দিন।");
+alert(
+"পেমেন্ট নম্বর দিন।"
+);
+
 return;
 
 }
 
 
-if(method==="rocket"){
+if(method === "rocket"){
 
 alert(
 "Rocket বর্তমানে Hold করা আছে।"
@@ -1338,12 +1581,14 @@ return;
 
 try{
 
-const ref=
-doc(db,"users",currentUser.uid);
-
-
 await updateDoc(
-ref,
+
+doc(
+db,
+"users",
+currentUser.uid
+),
+
 {
 
 withdrawAmount:amount,
@@ -1363,8 +1608,10 @@ serverTimestamp()
 
 
 document.getElementById("wmsg")
-.innerHTML=
-"<span class='success'>Withdrawal Request জমা হয়েছে। Admin verification প্রয়োজন।</span>";
+.innerHTML =
+"<span class='success'>"+
+"Withdrawal Request জমা হয়েছে। Admin verification প্রয়োজন।"+
+"</span>";
 
 
 addHistory(
@@ -1376,8 +1623,11 @@ amount+
 
 }catch(error){
 
+console.error(error);
+
 alert(
-"Withdrawal Error: "+error.message
+"Withdrawal Error: "+
+error.message
 );
 
 }
@@ -1387,17 +1637,22 @@ alert(
 
 /* SUPPORT */
 
-window.support=
+window.support =
 async function(){
 
-const text=
-document.getElementById("supportText")
-.value.trim();
+let text =
+document
+.getElementById("supportText")
+.value
+.trim();
 
 
 if(!text){
 
-alert("সমস্যাটি লিখুন।");
+alert(
+"সমস্যাটি লিখুন।"
+);
+
 return;
 
 }
@@ -1405,7 +1660,6 @@ return;
 
 if(!currentUser){
 
-alert("User এখনও Login হয়নি।");
 return;
 
 }
@@ -1413,12 +1667,14 @@ return;
 
 try{
 
-const ref=
-doc(db,"users",currentUser.uid);
-
-
 await updateDoc(
-ref,
+
+doc(
+db,
+"users",
+currentUser.uid
+),
+
 {
 
 supportMessage:text,
@@ -1434,21 +1690,26 @@ serverTimestamp()
 
 
 document.getElementById("supportmsg")
-.innerText=
+.innerText =
 "Support Request জমা হয়েছে।";
 
 
 document.getElementById("supportText")
-.value="";
+.value = "";
 
 
-addHistory("Support Request");
+addHistory(
+"Support Request"
+);
 
 
 }catch(error){
 
+console.error(error);
+
 alert(
-"Support Error: "+error.message
+"Support Error: "+
+error.message
 );
 
 }
